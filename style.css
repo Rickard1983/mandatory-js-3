@@ -1,0 +1,81 @@
+
+#mainConainer{
+  width: 50%;
+  min-width: 800px;
+  height: 70%;
+  margin: auto;
+}
+header{
+  text-align: center;
+  background-color: red;
+}
+main{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+#dogBreedsMenues{
+    width: 230px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-content: flex-start;
+    align-items: center;
+}
+#headDogBreedsContainer{
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow-y: scroll;
+  color: white;
+}
+.dogBreedBox {
+  display: block;
+  padding: 10px;
+  float: left;
+  background-color: blue;
+  border-bottom: 2px solid white;
+}
+.dogBreedBox p{
+  font-size: 1em;
+  font-weight: bold;
+}
+.dogBreedBox:last-child {
+  border-bottom: none;
+}
+.subBreed{
+  margin-top: -8px;
+  margin-left: 5px;
+  margin-bottom: 10px;
+}
+.subBreedIteam{
+  font-size: 0.9em;
+}
+li{
+  list-style-type: none;
+}
+
+/* ------------------------- Sektion höger ------------------------- */
+#dogBreedsImgs{
+  width: 430px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-content: flex-start;
+  align-items: center;
+}
+#presentDogBreed{
+  width: 200%;
+  text-align: center;
+}
+button{
+  width: 200px;
+  margin-top: 10px;
+}
+#insurtDogBreedImgs{
+  margin-top: 20px;
+  width: 100%;
+}
