@@ -1,6 +1,6 @@
 let ul = document.querySelector('ul');
 let main = document.querySelector('main');
-let section = document.querySelector('section ul');
+let section = document.querySelector('section ul'); //<---- Deklarera variable
 let ulImages = '';
 let breedName ='';
 let subBreedName = '';
@@ -18,11 +18,11 @@ window.addEventListener("hashchange", function() {
 
 
 function capitalize(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
+    return string.charAt(0).toUpperCase() + string.slice(1); //<------ Gör stor bokstav
 }
 
 
-function request(method, url, run) {
+function request(method, url, run) {  // Begär information
     let req = new XMLHttpRequest();
     req.addEventListener("load", run);
     req.open(method, url);
@@ -37,7 +37,7 @@ function renderAllBreedList() {
     for (let dog in data) {
         let li = document.createElement('li');
         let a = document.createElement('a');
-        a.setAttribute('href', '#' + dog);
+        a.setAttribute('href', '#' + dog) //<--- gör all hundraser till en lista
         a.textContent = capitalize(dog);
         a.addEventListener('click', getBreedsRandomPicture);
         ul.appendChild(li);
@@ -46,8 +46,8 @@ function renderAllBreedList() {
 }
 
 
-function getRandomPicture() {
-    main.innerHTML = ' ';
+function getRandomPicture() {  //<--- En funktion som hämtar slumpad bild på
+    main.innerHTML = ' ';      // slumpmässig ras
     main.innerHTML = '<h3 id="picheader">Random picture on dog</h3> ';
     request('GET', 'https://dog.ceo/api/breeds/image/random', randomPicture)
 }
@@ -67,7 +67,7 @@ function randomPicture() {
 }
 
 
-function getBreedsRandomPicture() {
+function getBreedsRandomPicture() {  //slumpmässig bild på ras
     hashRemoved = this.getAttribute('href').substring(1);
     main.innerHTML = ' ';
     section.innerHTML = ' ';
@@ -76,7 +76,7 @@ function getBreedsRandomPicture() {
 
 }
 
-function breedPicture() {
+function breedPicture() { // här får man bild baserat på ras
     let pic = JSON.parse(this.responseText);
     let data = pic.message;
     main.innerHTML = '<h3>' + capitalize(subBreedName) + '</h3>';
@@ -94,7 +94,7 @@ function breedPicture() {
 }
 
 
-function subBreedList() {
+function subBreedList() { //här tar vi och gör om alla underraser till en lista
     let myArray = JSON.parse(this.responseText);
     let data = myArray.message;
     if (data.length !== 0) {
@@ -115,7 +115,7 @@ function subBreedList() {
 }
 
 
-function subBreedsRandomPic() {
+function subBreedsRandomPic() { //slumpmässig bild på underrras
     main.innerHTML = ' ';
     request('GET', 'https://dog.ceo/api/breed/'+ subBreedName +'/images/random', subBreedPicture)
     if (subBreedName.includes('/')) {
@@ -129,7 +129,7 @@ function subBreedsRandomPic() {
     }
 }
 
-function subBreedPicture() {
+function subBreedPicture() { //här får man bild på underras baserat på ras
     let pic = JSON.parse(this.responseText);
     let data = pic.message;
     main.innerHTML = '<h3>' + capitalize(subBreedName)  + '</h3>';
@@ -152,7 +152,7 @@ function subBreedPicture() {
 }
 
 
-function start() {
+function start() { //Startar applikationen
     request('GET', 'https://dog.ceo/api/breeds/list/all', renderAllBreedList);
     if (window.location.hash !== '') {
         subBreedName = window.location.hash.substring(1);
@@ -170,3 +170,13 @@ function start() {
 }
 
 start();
+
+
+//först deklarar jag alla variable. Sen skickar vi en förfrågan till ApI sidan
+// och begär informartion om hundraser och underraser. Sen gör tar vi denna
+// information och gör om till en lista med stor bokstav. Efter det hoppar vi
+// ner till kodstycket som ger bilder baserat på ras och underras. Sen hoppar
+// koden till kodstycket som berättar vilken bild på vilken ras. I detta
+// fall berättar vi för programmet att vi vill ha en slumpmässig bild
+// på den ras eller underras vi klickar på. Sen sist så har vi en knapp .
+//Trycker vi på denna knapp så får vi en slimpmässig bild på slumpmässig ras.
